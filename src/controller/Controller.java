@@ -13,8 +13,8 @@ import model.vo.VOMovingViolation;
 import view.MovingViolationsManagerView;
 
 public class Controller {
-	private static final String enero = "./data/Moving_Violations_Issued_in_January_2018-2.csv";
-	private static final String febrero = "./data/Moving_Violations_Issued_in_February_2018.csv";
+	private static final String enero = "./data/Moving_Violations_Issued_in_January_2018.csv";
+	private static final String febrero = "./data/Moving_Violations_Issued_in_February_2018-2.csv";
 	private static final String marzo = "./data/Moving_Violations_Issued_in_March_2018.csv";
 
 
@@ -24,10 +24,10 @@ public class Controller {
 	private Cola<VOMovingViolation> queue;
 	private Pila<VOMovingViolation> stack;
 	// Muestra obtenida de los datos cargados 
-	Comparable<VOMovingViolation> [ ] muestra;
+	private Comparable<VOMovingViolation> [ ] muestra;
 
 	// Copia de la muestra de datos a ordenar 
-	Comparable<VOMovingViolation> [ ] muestraCopia;
+	private Comparable<VOMovingViolation> [ ] muestraCopia;
 
 	public Controller() {
 		view = new MovingViolationsManagerView();
