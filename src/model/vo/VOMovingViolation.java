@@ -1,5 +1,9 @@
 package model.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Representation of a MovingViolation object
  */
@@ -78,23 +82,42 @@ public class VOMovingViolation implements Comparable<VOMovingViolation> {
 	@Override
 	public int compareTo(VOMovingViolation o) {
 		// TODO implementar la comparacion "natural" de la clase
-		if(Integer.parseInt(this.getTicketIssueDate())>Integer.parseInt(o.getTicketIssueDate()))
-			return 1;
-		else if(Integer.parseInt(this.getTicketIssueDate())<Integer.parseInt(o.getTicketIssueDate()))
-			return -1;
-		else
-		{
-			if(this.objectId()>o.objectId())
-				return 1;
-			else if(this.objectId()<o.objectId())
-				return -1;
-			return 0;
-		}
-	}
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+		int comparacion = 0;
+		try {
+			Date fecha1 = formato.parse(date);
+			Date fecha2 = formato.parse(o.date);
+			comparacion = fecha1.compareTo(fecha2);
 
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(comparacion < 0){
+			comparacion =  -1;
+		}
+		
+		else if(comparacion > 0){
+			comparacion =  1;
+		}
+		
+		else if(comparacion == 0){
+			if(id < o.id){
+				comparacion =   -1;
+			}
+			else if(id > o.id){
+				comparacion = 1;
+			}
+			
+			else if(id == o.id){
+				comparacion =  0;
+			}
+		}
+		return comparacion;
+	}
 	public String toString()
 	{
 		// TODO Convertir objeto en String (representacion que se muestra en la consola)
-		return " "+objectId();
+		return "Object ID "+ id + " - Description: " + description + " - Date: " + date + " - Accident Indicator: " + indicator + " - Location: " + loc + " - TotalPaid: " + total;
 	}
 }

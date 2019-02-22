@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import com.opencsv.CSVReader;
@@ -54,14 +55,14 @@ public class Controller {
 				int idObjeto = Integer.parseInt(id);
 				String location = nextLineR1[2];
 				String fecha = nextLineR1[13];
-				String fechaFormato = formatearFecha(fecha);
 				String total = nextLineR1[8];
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR1[12];
 				String description = nextLineR1[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fechaFormato, totalObjeto, indicator, description));
+				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
+				
 			}
 			lector.close();
 			CSVReader lector2 = new CSVReader(new FileReader(febrero));
@@ -71,14 +72,15 @@ public class Controller {
 				int idObjeto = Integer.parseInt(id);
 				String location = nextLineR2[2];
 				String fecha = nextLineR2[13];
-				String fechaFormato = formatearFecha(fecha);
+
 				String total = nextLineR2[8];
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR2[12];
 				String description = nextLineR2[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fechaFormato, totalObjeto, indicator, description));
+				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
+
 			}
 			lector2.close();
 			CSVReader lector3 = new CSVReader(new FileReader(marzo));
@@ -88,14 +90,14 @@ public class Controller {
 				int idObjeto = Integer.parseInt(id);
 				String location = nextLineR3[2];
 				String fecha = nextLineR3[13];
-				String fechaFormato = formatearFecha(fecha);
 				String total = nextLineR3[8];
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR3[12];
 				String description = nextLineR3[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fechaFormato, totalObjeto, indicator, description));
+				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
+		
 			}
 			lector3.close();
 		} catch (FileNotFoundException e) {
@@ -114,17 +116,24 @@ public class Controller {
 	 * @param n tamaNo de la muestra, n > 0
 	 * @return muestra generada
 	 */
+	@SuppressWarnings("unchecked")
 	public Comparable<VOMovingViolation> [ ] generarMuestra( int n )
 	{
 		muestra = new Comparable[ n ];
-
 		// TODO Llenar la muestra aleatoria con los datos guardados en la estructura de datos
-		for(int i=0;i<n;i++)
+		Cola<VOMovingViolation> e = queue;
+		
+		int pos=0;
+		int aleatorio = 0;
+		while(pos<n)
 		{
-			muestra[i]=queue.dequeue();
+			aleatorio = (int) (Math.random()+1)*n;
+			muestra[pos] = e.get(aleatorio);
+ 			pos++;
 		}
-		return muestra;
 
+		return muestra;
+		
 	}
 
 	/**
@@ -325,12 +334,6 @@ public class Controller {
 				break;
 			}
 		}
-	}
-	public String formatearFecha(String pFecha){
-
-		String fechaFormateada = pFecha.substring(0,10);
-
-		return fechaFormateada;
 	}
 
 }

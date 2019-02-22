@@ -68,4 +68,16 @@ public class Cola<T extends Comparable<T>> implements IQueue<T>{
 		numElementos--;
 		return elem;
 	}
+	
+	public T get(int i){
+		
+		T objeto = null;
+		Iterator<T> it = this.iterator();
+		int cont = 0;
+		while(it.hasNext() && cont<i){
+			objeto = it.next();
+			cont++;
+		}
+		return objeto;
+	}
 }
