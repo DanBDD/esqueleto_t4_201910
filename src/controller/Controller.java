@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.opencsv.CSVReader;
 
@@ -61,8 +62,8 @@ public class Controller {
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR1[12];
 				String description = nextLineR1[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 				
 			}
@@ -79,8 +80,8 @@ public class Controller {
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR2[12];
 				String description = nextLineR2[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 
 			}
@@ -96,8 +97,8 @@ public class Controller {
 				int totalObjeto = Integer.parseInt(total);
 				String indicator = nextLineR3[12];
 				String description = nextLineR3[15];
-				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 		
 			}
@@ -123,13 +124,13 @@ public class Controller {
 	{
 		muestra = new Comparable[ n ];
 		// TODO Llenar la muestra aleatoria con los datos guardados en la estructura de datos
-		Cola<VOMovingViolation> e = queue;
+		Pila<VOMovingViolation> e = stack;
 		
 		int pos=0;
 		int aleatorio = 0;
 		while(pos<n)
 		{
-			aleatorio = (int)(Math.random()*n)+1;
+			aleatorio =  ThreadLocalRandom.current().nextInt(0, e.size());
 			muestra[pos] = e.get(aleatorio);
  			pos++;
 		}
@@ -186,7 +187,7 @@ public class Controller {
 	public void invertirMuestra( Comparable[ ] datos ) {
 
 		// TODO implementar
-		Pila<VOMovingViolation> s = null;
+		Pila<VOMovingViolation> s = new Pila<VOMovingViolation>();
 		for(int i=0;i<datos.length;i++)
 		{
 			s.push((VOMovingViolation) datos[i]);

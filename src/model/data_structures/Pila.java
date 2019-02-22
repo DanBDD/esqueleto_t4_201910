@@ -55,6 +55,15 @@ public class Pila<T extends Comparable<T>> implements IStack<T> {
 		return elem;
 	}
 
-
+	public T get(int i){
+		Iterator<T> it = this.iterator();
+		int cont = 0;
+		T objeto = null;
+		while(cont<i){
+			objeto = it.next();
+			cont++;
+		}
+		return objeto;
+	}
 
 }
