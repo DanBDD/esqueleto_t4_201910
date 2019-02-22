@@ -102,14 +102,14 @@ public class VOMovingViolation implements Comparable<VOMovingViolation> {
 		}
 		
 		else if(comparacion == 0){
-			if(id < o.id){
+			if(this.id < o.id){
 				comparacion =   -1;
 			}
-			else if(id > o.id){
+			else if(this.id > o.id){
 				comparacion = 1;
 			}
 			
-			else if(id == o.id){
+			else if(this.id == o.id){
 				comparacion =  0;
 			}
 		}
