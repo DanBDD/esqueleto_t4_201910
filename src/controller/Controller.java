@@ -3,7 +3,9 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import com.opencsv.CSVReader;
@@ -60,7 +62,7 @@ public class Controller {
 				String indicator = nextLineR1[12];
 				String description = nextLineR1[15];
 				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 				
 			}
@@ -78,7 +80,7 @@ public class Controller {
 				String indicator = nextLineR2[12];
 				String description = nextLineR2[15];
 				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 
 			}
@@ -95,7 +97,7 @@ public class Controller {
 				String indicator = nextLineR3[12];
 				String description = nextLineR3[15];
 				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 		
 			}
@@ -127,7 +129,7 @@ public class Controller {
 		int aleatorio = 0;
 		while(pos<n)
 		{
-			aleatorio = (int) (Math.random()+1)*n;
+			aleatorio = (int)(Math.random()*n)+1;
 			muestra[pos] = e.get(aleatorio);
  			pos++;
 		}
