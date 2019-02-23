@@ -6,7 +6,7 @@ package model.data_structures;
  *
  * @param <T> Objeto a guardar en ese arreglo dinamico generico
  */
-public class ArregloDinamico <T extends Comparable<T>>{
+public class ArregloDinamico <T>{
 
 	private int tamanoActual;
 	

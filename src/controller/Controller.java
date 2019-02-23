@@ -27,6 +27,7 @@ public class Controller {
 	// TODO Definir las estructuras de datos para cargar las infracciones del periodo definido
 	private Cola<VOMovingViolation> queue;
 	private Pila<VOMovingViolation> stack;
+	private ArregloDinamico<VOMovingViolation> arreglo;
 	// Muestra obtenida de los datos cargados 
 	private Comparable<VOMovingViolation> [ ] muestra;
 
@@ -39,6 +40,7 @@ public class Controller {
 		//TODO inicializar las estructuras de datos para la carga de informacion de archivos
 		queue=new Cola<VOMovingViolation>();
 		stack=new Pila<VOMovingViolation>();
+		arreglo = new ArregloDinamico<>(132945);
 	}
 
 	/**
@@ -63,7 +65,8 @@ public class Controller {
 				String indicator = nextLineR1[12];
 				String description = nextLineR1[15];
 //				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				arreglo.agregar(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 				
 			}
@@ -81,7 +84,8 @@ public class Controller {
 				String indicator = nextLineR2[12];
 				String description = nextLineR2[15];
 //				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				arreglo.agregar(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 
 			}
@@ -98,7 +102,8 @@ public class Controller {
 				String indicator = nextLineR3[12];
 				String description = nextLineR3[15];
 //				queue.enqueue(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
-				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+//				stack.push(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
+				arreglo.agregar(new VOMovingViolation(idObjeto, location, fecha, totalObjeto, indicator, description));
 				contador++;
 		
 			}
@@ -124,14 +129,14 @@ public class Controller {
 	{
 		muestra = new Comparable[ n ];
 		// TODO Llenar la muestra aleatoria con los datos guardados en la estructura de datos
-		Pila<VOMovingViolation> e = stack;
+		ArregloDinamico<VOMovingViolation> e = arreglo;
 		
 		int pos=0;
 		int aleatorio = 0;
 		while(pos<n)
 		{
-			aleatorio =  ThreadLocalRandom.current().nextInt(0, e.size());
-			muestra[pos] = e.get(aleatorio);
+			aleatorio =  ThreadLocalRandom.current().nextInt(0, e.darTamano());
+			muestra[pos] = e.darElem(aleatorio);
  			pos++;
 		}
 
