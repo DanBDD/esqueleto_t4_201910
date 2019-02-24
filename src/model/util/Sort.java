@@ -1,3 +1,6 @@
+/**
+ * Se copiaron los metodos de ordenamiento Shell, Merge y Quick del libro Algorithhms 4th Edition by Robert Sedgewick, Kevin Wayne.pdf
+ */
 package model.util;
 
 public class Sort {
